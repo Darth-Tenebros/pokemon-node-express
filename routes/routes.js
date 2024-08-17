@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const pokemon = require('../models/pokemon.model');
+const pokemonController = require('../controllers/pokemon.controller');
 
 
 /**
@@ -17,7 +17,7 @@ const pokemon = require('../models/pokemon.model');
  *                  application/json:
  *                      example: [{}]
  */
-router.get('/pokemon', pokemon.getAllPokemon);
+router.get('/pokemon', pokemonController.getAllPokemon);
 
 
 /**
@@ -26,6 +26,13 @@ router.get('/pokemon', pokemon.getAllPokemon);
  *  get:
  *      summary: get pokemon by its id
  *      tags: [pokemon]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *          description: The ID of the pokemon
  *      responses:
  *          200:
  *              description: successfully gotten the pokemon
@@ -33,7 +40,7 @@ router.get('/pokemon', pokemon.getAllPokemon);
  *                  application/json:
  *                      example: {id: 2, name: '', type: '', owner: ''}
  */
-router.get('/pokemon/:id', pokemon.getByID);
+router.get('/pokemon/:id', pokemonController.getByID);
 
 
 
