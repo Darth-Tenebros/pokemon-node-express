@@ -34,3 +34,17 @@ exports.getByID = (req, res) => {
         res.send(poke);
     }
 }
+
+exports.deleteByID = (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = pokemon.findIndex((p) => p.id === id);
+    console.log(id);
+
+    if(index > -1){
+        const poke = pokemon[index];
+        pokemon.splice(index, 1);
+        res.send(poke);
+    }else{
+        res.status(404).send({ message: "Pokemon not found" });
+    }
+}

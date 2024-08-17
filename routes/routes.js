@@ -43,5 +43,31 @@ router.get('/pokemon', pokemonController.getAllPokemon);
 router.get('/pokemon/:id', pokemonController.getByID);
 
 
+/**
+ * @swagger
+ * /pokemon/delete/{id}:
+ *  delete:
+ *      summary: Delete a pokemon by ID
+ *      tags: [pokemon]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *          description: The ID of the pokemon to delete
+ *      responses:
+ *          200:
+ *              description: Pokemon successfully deleted
+ *              content:
+ *                  application/json:
+ *                      example:
+ *                          message: "Pokemon deleted"
+ *          404:
+ *              description: Pokemon not found
+ */
+router.delete('/pokemon/delete/:id', pokemonController.deleteByID);
+
+
 
 module.exports = router;
