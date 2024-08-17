@@ -35,6 +35,30 @@ exports.getByID = (req, res) => {
     }
 }
 
+exports.updateByID = (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = pokemon.findIndex((p) => p.id === id);
+    console.log(id);
+
+    if (index > -1) {
+        const updatedData = req.body;
+        
+        if (updatedData.name !== undefined) {
+            pokemon[index].name = updatedData.name;
+        }
+        if (updatedData.type !== undefined) {
+            pokemon[index].type = updatedData.type;
+        }
+        if (updatedData.owner !== undefined) {
+            pokemon[index].owner = updatedData.owner;
+        }
+        res.send(pokemon[index]);
+    } else {
+        res.status(404).send({ message: "Pokemon not found" });
+    }
+}
+
+
 exports.deleteByID = (req, res) => {
     const id = parseInt(req.params.id);
     const index = pokemon.findIndex((p) => p.id === id);

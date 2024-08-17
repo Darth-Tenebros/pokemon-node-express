@@ -69,5 +69,53 @@ router.get('/pokemon/:id', pokemonController.getByID);
 router.delete('/pokemon/delete/:id', pokemonController.deleteByID);
 
 
+/**
+ * @swagger
+ * /pokemon/update/{id}:
+ *  put:
+ *      summary: Update a pokemon by ID
+ *      tags: [pokemon]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *          description: The ID of the pokemon to update
+ *        - in: body
+ *          name: body
+ *          description: The updated pokemon data
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          name:
+ *                              type: string
+ *                          type:
+ *                              type: string
+ *                          owner:
+ *                              type: string
+ *                      example:
+ *                          name: "Raichu"
+ *                          type: "Electric"
+ *                          owner: "Ash"
+ *      responses:
+ *          200:
+ *              description: Pokemon successfully updated
+ *              content:
+ *                  application/json:
+ *                      example:
+ *                          id: 1
+ *                          name: "Pikachu"
+ *                          type: "Electric"
+ *                          owner: "Ash"
+ *          404:
+ *              description: Pokemon not found
+ */
+router.put('/pokemon/update/:id', pokemonController.updateByID);
+
+
 
 module.exports = router;
