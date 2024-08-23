@@ -38,3 +38,7 @@ exports.deletePokemonById = (id) => {
         return error
     });
 }
+
+exports.getAllPokemon = () => {
+    
+}
