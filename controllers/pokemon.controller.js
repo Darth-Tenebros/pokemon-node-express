@@ -13,13 +13,22 @@ exports.updateByID = (req, res) => {
 }
 
 
-exports.deleteByID = async (req, res) => {
+exports.deleteByID = (req, res) => {
     const id = parseInt(req.params.id);
-    
-    const result = await repository.deletePokemonById(id);
-    if(result.length > 1){
-        res.send(result);
-    }else{
-        res.status(404).send({message: `pokemon with id ${id} not found`});
-    }
+
+    repository.deletePokemonById(id)
+    .then((result) => {
+        res.status(200)
+        .json({
+            message: "pokemon deleted successfully",
+            data: result
+        })
+    })
+    .catch((error) => {
+        res.status(500)
+        .json({
+            message: "deletion failed",
+            data: error
+        })
+    });
 }

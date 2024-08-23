@@ -28,10 +28,13 @@ exports.createPokemon = (pokemon) => {
     poke.save();
 }
 
-exports.deletePokemonById = async (id) => {
-    const poke = await pokemonModel.find({
+exports.deletePokemonById = (id) => {
+    return pokemonModel.deleteOne({
         id: id
-    }).exec();
-    console.log(poke);
-    return poke;
+    })
+    .exec()
+    .catch((error) => {
+        console.log(error);
+        return error
+    });
 }
