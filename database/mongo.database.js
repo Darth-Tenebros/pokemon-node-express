@@ -18,14 +18,17 @@ const pokemonModel = mongoose.model('Pokemon', pokemonSchema);
  * @param {Pokemon} pokemon 
  */
 exports.createPokemon = (pokemon) => {
-    const poke = new pokemonModel({
+    return new pokemonModel({
         id: pokemon.id,
         name: pokemon.name,
         type: pokemon.type,
         owner: pokemon.owner,
+    })
+    .save()
+    .catch((error) => {
+        console.log(error);
+        return error;
     });
-    
-    poke.save();
 }
 
 exports.deletePokemonById = (id) => {
