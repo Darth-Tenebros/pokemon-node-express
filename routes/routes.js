@@ -6,6 +6,48 @@ const pokemonController = require('../controllers/pokemon.controller');
 
 /**
  * @swagger
+ * /pokemon/create:
+ *  post:
+ *      summary: Create a new pokemon
+ *      tags: [pokemon]
+ *      requestBody:
+ *          description: create a new pokemon
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      required:
+ *                          - name
+ *                          - type
+ *                          - owner
+ *                      properties:
+ *                          name:
+ *                              type: string
+ *                              example: "Jigglypuff"
+ *                          type:
+ *                              type: string
+ *                              example: "Normal/Fairy"
+ *                          owner:
+ *                              type: string
+ *                              example: "Jiggly"
+ *      responses:
+ *          201:
+ *              description: Pokemon successfully created
+ *              content:
+ *                  application/json:
+ *                      example:
+ *                          id: 16
+ *                          name: "Jigglypuff"
+ *                          type: "Normal/Fairy"
+ *                          owner: "Jiggly"
+ *          400:
+ *              description: Bad request, missing required fields
+ */
+router.post('/pokemon/create', pokemonController.createPokemon);
+
+/**
+ * @swagger
  * /pokemon:
  *  get:
  *      summary: get all available pokemon
