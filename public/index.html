@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Endpoints Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      h2 {
+        color: #555;
+        margin-top: 20px;
+      }
+
+      pre {
+        background: #eee;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      code {
+        background: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      .endpoint {
+        margin-bottom: 20px;
+      }
+
+      .endpoint h3 {
+        margin: 0;
+      }
+
+      .endpoint p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>API Endpoints Documentation</h1>
+
+      <div class="endpoint">
+        <h2>/pokemon/create</h2>
+        <p><strong>Method:</strong> POST</p>
+        <p><strong>Summary:</strong> Create a new pokemon</p>
+        <h3>Request Body:</h3>
+        <pre><code>{
+  "name": "Jigglypuff",
+  "type": "Normal/Fairy",
+  "owner": "Jiggly"
+}</code></pre>
+        <h3>Responses:</h3>
+        <p><strong>201 Created:</strong> Successfully created the pokemon.</p>
+        <pre><code>{
+  "id": 16,
+  "name": "Jigglypuff",
+  "type": "Normal/Fairy",
+  "owner": "Jiggly"
+}</code></pre>
+        <p><strong>400 Bad Request:</strong> Missing required fields.</p>
+      </div>
+
+      <div class="endpoint">
+        <h2>/pokemon</h2>
+        <p><strong>Method:</strong> GET</p>
+        <p><strong>Summary:</strong> Get all available pokemon</p>
+        <p><strong>Returns:</strong> A list of Pokémon</p>
+        <h3>Responses:</h3>
+        <p>
+          <strong>200 OK:</strong> Successfully retrieved the list of Pokémon.
+        </p>
+        <pre><code>[
+  {
+    "id": 1,
+    "name": "Pikachu",
+    "type": "Electric",
+    "owner": "Ash"
+  },
+  {
+    "id": 2,
+    "name": "Charmander",
+    "type": "Fire",
+    "owner": "Brock"
+  }
+]</code></pre>
+      </div>
+
+      <div class="endpoint">
+        <h2>/pokemon/{id}</h2>
+        <p><strong>Method:</strong> GET</p>
+        <p><strong>Summary:</strong> Get pokemon by its ID</p>
+        <h3>Parameters:</h3>
+        <pre><code>{
+  "id": "integer"
+}</code></pre>
+        <h3>Responses:</h3>
+        <p><strong>200 OK:</strong> Successfully retrieved the pokemon.</p>
+        <pre><code>{
+  "id": 2,
+  "name": "Charmander",
+  "type": "Fire",
+  "owner": "Brock"
+}</code></pre>
+      </div>
+
+      <div class="endpoint">
+        <h2>/pokemon/delete/{id}</h2>
+        <p><strong>Method:</strong> DELETE</p>
+        <p><strong>Summary:</strong> Delete a pokemon by ID</p>
+        <h3>Parameters:</h3>
+        <pre><code>{
+  "id": "integer"
+}</code></pre>
+        <h3>Responses:</h3>
+        <p><strong>200 OK:</strong> Successfully deleted the pokemon.</p>
+        <pre><code>{
+  "message": "Pokemon deleted"
+}</code></pre>
+        <p><strong>404 Not Found:</strong> Pokemon not found.</p>
+      </div>
+
+      <div class="endpoint">
+        <h2>/pokemon/update/{id}</h2>
+        <p><strong>Method:</strong> PUT</p>
+        <p><strong>Summary:</strong> Update a pokemon by ID</p>
+        <h3>Parameters:</h3>
+        <pre><code>{
+  "id": "integer"
+}</code></pre>
+        <h3>Request Body:</h3>
+        <pre><code>{
+  "name": "Raichu",
+  "type": "Electric",
+  "owner": "Ash"
+}</code></pre>
+        <h3>Responses:</h3>
+        <p><strong>200 OK:</strong> Successfully updated the pokemon.</p>
+        <pre><code>{
+  "id": 1,
+  "name": "Raichu",
+  "type": "Electric",
+  "owner": "Ash"
+}</code></pre>
+        <p><strong>404 Not Found:</strong> Pokemon not found.</p>
+      </div>
+    </div>
+  </body>
+</html>
