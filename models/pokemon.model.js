@@ -1,11 +1,14 @@
+const mongoose = require('mongoose');
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_DB_CONNSTR);
 
-class Pokemon{
+const pokemonSchema = new mongoose.Schema({
+    id: Number,
+    name: String,
+    type: String,
+    owner: String,
+});
 
-    constructor(name, type, owner){
-        this.name = name;
-        this.type = type;
-        this.owner = owner;
-    }
-}
+const pokemonModel = mongoose.model('Pokemon', pokemonSchema);
 
-exports.Pokemon = Pokemon;
+exports.pokemonModel = pokemonModel;
