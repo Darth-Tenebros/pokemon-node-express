@@ -41,7 +41,28 @@ exports.getByID = (req, res) => {
 }
 
 exports.updateByID = (req, res) => {
-    
+    const {id} = req.params;
+    const updatedData = req.body;
+
+    if(!id){
+        res.status(400).send({message: "id is required"});
+    }
+
+    repository.updateById(id, updatedData)
+    .then((result) => {
+        res.status(200)
+        .json({
+            message: "pokemon updated successfully",
+            data: result
+        })
+    })
+    .catch((error) => {
+        res.status(500)
+        .json({
+            message: "update failed",
+            data: error
+        })
+    })
 }
 
 

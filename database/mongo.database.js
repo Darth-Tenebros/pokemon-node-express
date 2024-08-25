@@ -13,24 +13,24 @@ exports.createPokemon = (pokemon) => {
         type: pokemon.type,
         owner: pokemon.owner,
     })
-    .save()
-    .catch((error) => {
-        console.log(error);
-        return error;
-    });
+    .save();
 }
 
 exports.deletePokemonById = (id) => {
     return pokemonModel.pokemonModel.deleteOne({
         id: id
     })
-    .exec()
-    .catch((error) => {
-        console.log(error);
-        return error
-    });
+    .exec();
 }
 
 exports.getAllPokemon = () => {
     
+}
+
+exports.updateById = (id, updatedData) => {
+    return pokemonModel.pokemonModel.updateOne(
+        {id: id},
+        {$set: updatedData}
+    )
+    .exec();
 }
