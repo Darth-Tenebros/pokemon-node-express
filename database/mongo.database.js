@@ -1,15 +1,4 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
-mongoose.connect(process.env.MONGO_DB_CONNSTR);
-
-const pokemonSchema = new mongoose.Schema({
-    id: Number,
-    name: String,
-    type: String,
-    owner: String,
-});
-
-const pokemonModel = mongoose.model('Pokemon', pokemonSchema);
+const pokemonModel = require('../models/pokemon.model');
 
 
 /**
@@ -18,7 +7,7 @@ const pokemonModel = mongoose.model('Pokemon', pokemonSchema);
  * @param {Pokemon} pokemon 
  */
 exports.createPokemon = (pokemon) => {
-    return new pokemonModel({
+    return new pokemonModel.pokemonModel({
         id: pokemon.id,
         name: pokemon.name,
         type: pokemon.type,
@@ -32,7 +21,7 @@ exports.createPokemon = (pokemon) => {
 }
 
 exports.deletePokemonById = (id) => {
-    return pokemonModel.deleteOne({
+    return pokemonModel.pokemonModel.deleteOne({
         id: id
     })
     .exec()
