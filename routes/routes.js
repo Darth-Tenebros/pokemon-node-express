@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const pokemonController = require('../controllers/pokemon.controller');
+const middleware = require('../middleware/pokemon.middleware');
 
 
 /**
@@ -44,7 +45,7 @@ const pokemonController = require('../controllers/pokemon.controller');
  *          400:
  *              description: Bad request, missing required fields
  */
-router.post('/pokemon/create', pokemonController.createPokemon);
+router.post('/pokemon/create', middleware.incrementIdMiddleware, pokemonController.createPokemon);
 
 /**
  * @swagger
