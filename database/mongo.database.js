@@ -27,6 +27,10 @@ exports.getAllPokemon = () => {
     return pokemonModel.pokemonModel.find({});
 }
 
+exports.getById = (id) =>{
+    return pokemonModel.pokemonModel.find({id: id});
+}
+
 exports.updateById = (id, updatedData) => {
     return pokemonModel.pokemonModel.updateOne(
         {id: id},

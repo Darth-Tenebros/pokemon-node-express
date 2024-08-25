@@ -51,7 +51,27 @@ exports.getAllPokemon = (req, res) => {
 }
 
 exports.getByID = (req, res) => {
-    
+    const {id} = req.params;
+
+    if(!id){
+        res.status(400).send({message: "id is required"});
+    }
+
+    repository.getById(id)
+    .then((result) => {
+        res.status(200)
+        .json({
+            message: "pokemon get successful",
+            data: result
+        })
+    })
+    .catch((error) => {
+        res.status(500)
+        .json({
+            message: "get by id failed",
+            data: error
+        })
+    });
 }
 
 exports.updateByID = (req, res) => {
