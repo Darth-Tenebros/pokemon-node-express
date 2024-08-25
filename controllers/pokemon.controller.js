@@ -103,6 +103,10 @@ exports.updateByID = (req, res) => {
 exports.deleteByID = (req, res) => {
     const id = parseInt(req.params.id);
 
+    if(!id){
+        res.status(400).send({message: "id is required"});
+    }
+
     repository.deletePokemonById(id)
     .then((result) => {
         res.status(200)
