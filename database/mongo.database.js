@@ -24,7 +24,7 @@ exports.deletePokemonById = (id) => {
 }
 
 exports.getAllPokemon = () => {
-    
+    return pokemonModel.pokemonModel.find({});
 }
 
 exports.updateById = (id, updatedData) => {

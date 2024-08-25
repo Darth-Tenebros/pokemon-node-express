@@ -33,7 +33,21 @@ exports.createPokemon = (req, res) => {
 }
 
 exports.getAllPokemon = (req, res) => {
-    
+    repository.getAllPokemon()
+    .then((result) => {
+        res.status(200)
+        .json({
+            message: "get all sucessful",
+            data: result
+        })
+    })
+    .catch((error) => {
+        res.status(500)
+        .json({
+            message: "get all failed",
+            data: error
+        })
+    });
 }
 
 exports.getByID = (req, res) => {
