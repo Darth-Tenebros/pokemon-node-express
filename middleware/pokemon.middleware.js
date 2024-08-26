@@ -39,7 +39,6 @@ async function getSpriteUrl(pokemonName){
         const url = result_1.sprites.front_default;
         return url;
     } catch (error) {
-        console.log(error);
         return null;
     }
 }
@@ -51,7 +50,10 @@ const addImageMIddleware = (req, res, next) => {
     res.json = async function(data) {
         for (const element of data.data) {
             const url = await getSpriteUrl(element._doc.name);
-            console.log(url);
+            if(url === null){
+                element._doc.url = "image not found";
+                continue;
+            }
             element._doc.url = url;
         }
         return old.call(this, data);
