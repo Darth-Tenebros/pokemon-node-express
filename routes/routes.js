@@ -17,7 +17,7 @@ router.post('/pokemon/create', middleware.incrementIdMiddleware, pokemonControll
 router.get('/pokemon', pokemonController.getAllPokemon);
 
 
-router.get('/pokemon/:id', pokemonController.getByID);
+router.get('/pokemon/:id', middleware.addImageMIddleware, pokemonController.getByID);
 
 
 router.delete('/pokemon/delete/:id', pokemonController.deleteByID);
