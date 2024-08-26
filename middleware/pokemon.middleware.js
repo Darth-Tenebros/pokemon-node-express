@@ -29,6 +29,7 @@ const incrementIdMiddleware = (req, res, next) => {
 async function getSpriteUrl(pokemonName){
     const link = `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`;
 
+    // 🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮
     try {
         const response = await fetch(link);
         if (!response.ok) {

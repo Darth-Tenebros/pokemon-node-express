@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.post('/pokemon/create', middleware.incrementIdMiddleware, pokemonController.createPokemon);
 
 
-router.get('/pokemon', pokemonController.getAllPokemon);
+router.get('/pokemon',  middleware.addImageMIddleware, pokemonController.getAllPokemon);
 
 
 router.get('/pokemon/:id', middleware.addImageMIddleware, pokemonController.getByID);
